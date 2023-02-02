@@ -1,0 +1,195 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Sound/A Conversation with Saul (Rough Demo.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/Manager.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/CameraMovement.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Global Vars.gd" type="Script" id=4]
+[ext_resource path="res://Misc/Theme.tres" type="Theme" id=5]
+[ext_resource path="res://Sprites/floor.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/DiceNumber.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/HeightLabel.gd" type="Script" id=8]
+[ext_resource path="res://Sprites/sky.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Line.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Misc/NunitoSans-Regular.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://Sprites/Add Icon.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/TY_Line.png" type="Texture" id=13]
+[ext_resource path="res://Scripts/BGM.gd" type="Script" id=14]
+[ext_resource path="res://Sprites/cloud.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/moon.png" type="Texture" id=16]
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.501678, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 548, 112 )
+
+[sub_resource type="DynamicFont" id=6]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 11 )
+
+[node name="Manager" type="Node2D"]
+position = Vector2( 0, -600 )
+script = ExtResource( 2 )
+
+[node name="BG" type="Node2D" parent="."]
+position = Vector2( 0, 578 )
+
+[node name="stars" type="CPUParticles2D" parent="BG"]
+position = Vector2( 512, -2678 )
+z_index = -2
+amount = 64
+emission_shape = 2
+emission_rect_extents = Vector2( 520, 1800 )
+direction = Vector2( 0, 0 )
+gravity = Vector2( 0, 0 )
+scale_amount = 2.0
+scale_amount_curve = SubResource( 7 )
+
+[node name="shooting stars" type="CPUParticles2D" parent="BG"]
+position = Vector2( 512, -3278 )
+z_index = -2
+lifetime = 20.0
+emission_shape = 2
+emission_rect_extents = Vector2( 520, 900 )
+direction = Vector2( -1, 0.5 )
+spread = 16.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 600.0
+
+[node name="Sky" type="Sprite" parent="BG"]
+z_index = -1
+texture = ExtResource( 9 )
+centered = false
+offset = Vector2( 0, -1800 )
+
+[node name="clouds" type="CPUParticles2D" parent="BG"]
+position = Vector2( 1250, -678 )
+amount = 6
+lifetime = 20.0
+texture = ExtResource( 15 )
+emission_shape = 2
+emission_rect_extents = Vector2( 100, 300 )
+direction = Vector2( -1, 0 )
+spread = 5.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 90.0
+
+[node name="Scale" parent="BG" instance=ExtResource( 10 )]
+position = Vector2( 0, -600 )
+
+[node name="Scale2" parent="BG" instance=ExtResource( 10 )]
+position = Vector2( 0, -1200 )
+
+[node name="Scale3" parent="BG" instance=ExtResource( 10 )]
+position = Vector2( 0, -1800 )
+
+[node name="Scale4" parent="BG" instance=ExtResource( 10 )]
+position = Vector2( 0, -2400 )
+
+[node name="Scale5" parent="BG" instance=ExtResource( 10 )]
+position = Vector2( 0, -3000 )
+
+[node name="Scale6" parent="BG" instance=ExtResource( 10 )]
+position = Vector2( 0, -3600 )
+
+[node name="Final Scale" type="Sprite" parent="BG"]
+position = Vector2( 512, -4200 )
+texture = ExtResource( 13 )
+
+[node name="Sprite" type="Sprite" parent="BG"]
+position = Vector2( 512, -4600 )
+texture = ExtResource( 16 )
+
+[node name="Walls" type="StaticBody2D" parent="."]
+position = Vector2( 0, -32 )
+
+[node name="Floor" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 512, 704 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Walls/Floor"]
+position = Vector2( 0, -96 )
+texture = ExtResource( 6 )
+
+[node name="BG Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "Song"
+script = ExtResource( 14 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 512, 300 )
+current = true
+script = ExtResource( 3 )
+
+[node name="UI" type="Control" parent="Camera2D"]
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+
+[node name="Button" type="Button" parent="Camera2D/UI"]
+margin_left = 24.0
+margin_top = 16.0
+margin_right = 88.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 64, 64 )
+theme = ExtResource( 5 )
+shortcut_in_tooltip = false
+icon = ExtResource( 12 )
+flat = true
+icon_align = 1
+
+[node name="N of Dice" type="Label" parent="Camera2D/UI"]
+margin_left = 104.0
+margin_top = 24.0
+margin_right = 278.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 128, 64 )
+theme = ExtResource( 5 )
+text = "Count"
+valign = 1
+script = ExtResource( 7 )
+
+[node name="Height" type="Label" parent="Camera2D/UI"]
+margin_left = 832.0
+margin_top = 24.0
+margin_right = 986.0
+margin_bottom = 90.0
+grow_horizontal = 0
+rect_min_size = Vector2( 154, 64 )
+theme = ExtResource( 5 )
+text = "Height"
+align = 2
+valign = 1
+script = ExtResource( 8 )
+
+[node name="Bar" type="ProgressBar" parent="Camera2D/UI/Height"]
+anchor_right = 1.0
+margin_top = 64.0
+margin_right = 4.0
+margin_bottom = 130.0
+rect_scale = Vector2( 1, 0.1 )
+max_value = 1.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="Camera2D/UI/Height"]
+margin_right = 40.0
+margin_bottom = 66.0
+rect_pivot_offset = Vector2( -226, 171 )
+
+[node name="Highscore" type="Label" parent="Camera2D/UI/Height"]
+margin_top = -32.0
+margin_right = 154.0
+margin_bottom = 34.0
+grow_horizontal = 0
+rect_min_size = Vector2( 154, 64 )
+theme = ExtResource( 5 )
+custom_fonts/font = SubResource( 6 )
+text = "Highscore"
+align = 2
+valign = 1
+
+[node name="Global Vars" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[connection signal="pressed" from="Camera2D/UI/Button" to="." method="_on_Button_pressed"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Stepping Stones.mp3-1cc23ac838be6c617e3076f0e56be19b.mp3str"
+
+[deps]
+
+source_file="res://Sound/Stepping Stones.mp3"
+dest_files=[ "res://.import/Stepping Stones.mp3-1cc23ac838be6c617e3076f0e56be19b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

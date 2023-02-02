@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Misc/NunitoSans-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Sprites/Line.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Line.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
+
+[node name="Scale" type="Node2D"]
+
+[node name="Line" type="Sprite" parent="."]
+position = Vector2( 0, 22 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( 0, -16 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 856.0
+margin_right = 964.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 57, 45 )
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 0.501961 )
+text = "100 km"
+align = 1
+valign = 1
+script = ExtResource( 3 )

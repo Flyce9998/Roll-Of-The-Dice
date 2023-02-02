@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Beyond The Clouds (Theme for Modern Broadcast).mp3-42fb47c568d690427a258415d0683447.mp3str"
+
+[deps]
+
+source_file="res://Sound/Beyond The Clouds (Theme for Modern Broadcast).mp3"
+dest_files=[ "res://.import/Beyond The Clouds (Theme for Modern Broadcast).mp3-42fb47c568d690427a258415d0683447.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
